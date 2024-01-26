@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    {% block addcss %}{% endblock %}
+    <style>
+        .navbar .form-inline {
+            display:flexbox;
+            justify-content: flex-start;
+        }
+        .big-heading {
+            text-align: center;
+            font-size: 30px;
+            margin-top: 25px;
+            color:white;
+        }
+        .navbar-logo {
+            width: 60px;
+            height: auto;
+        }
+    </style>
+</head>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <center><b>{{ message }}</b></center>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-info">
+
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUKT66TWIbz3PvBaU5cO8fadgH2S9xClH2q1xbdbYAqJKkz0wZRbS_ZGWeOCgJMYErqpc&usqp=CAU" class="navbar-logo"></a>
+        </div>
+        <div class="container text-center">
+            <h1 class="big-heading">WELCOME TO DAILY NEWS</h1>
+        </div>
+        
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Hello, {{session.get('user')}}</a>
+                    </li>
+                    
+                </ul>
+                <div class="container">
+                    <form action="/" method="post">
+                        <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="keyword" placeholder="Enter keyword ...." aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+                        </div>
+                    </form>
+                    </div>
+                <!-- <form class="form-inline" action="{{url_for('home')}}" method="post">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search"  name="search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form> -->
+                
+            </div>
+        </div>
+    </nav>
+  
+
+    <!-- Load an icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="navbar">
+  <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
+  <a href="{{'https://newsapi.org/v2/top-headlines?country=us&apiKey=29ad574b6c09412dbe7c7ae20d95373c' }}"><i class="fa fa-fw fa-briefcase"></i> Business</a>
+  <a href="{{'https://newsapi.org/v2/top-headlines?country=us&apiKey=29ad574b6c09412dbe7c7ae20d95373c' }}"><i class="fa fa-fw fa-heartbeat"></i> Health</a>
+  <a href="{{ 'https://newsapi.org/v2/top-headlines?country=us&apiKey=29ad574b6c09412dbe7c7ae20d95373c' }}"><i class="fa fa-fw fa-ticket"></i> Entertainment</a>
+  <a href="{{ 'https://newsapi.org/v2/top-headlines?country=us&apiKey=29ad574b6c09412dbe7c7ae20d95373c' }}"><i class="fa fa-fw fa-car"></i> Sports</a>
+  <a href="{{ 'https://newsapi.org/v2/top-headlines?country=us&apiKey=29ad574b6c09412dbe7c7ae20d95373c' }}"><i class="fa fa-fw fa-graduation-cap"></i> Education</a>
+  <a href="{{ 'https://newsapi.org/v2/top-headlines?country=us&apiKey=29ad574b6c09412dbe7c7ae20d95373c' }}"><i class="fa fa-fw fa-mobile"></i> Technology</a>
+  <a href="{{ 'https://newsapi.org/v2/top-headlines?country=us&apiKey=29ad574b6c09412dbe7c7ae20d95373c' }}"><i class="fa fa-fw fa-flag"></i> Politics</a>
+  <a href="{{ 'https://newsapi.org/v2/top-headlines?country=us&apiKey=29ad574b6c09412dbe7c7ae20d95373c' }}"><i class="fa fa-fw fa-lock"></i> Crime</a>
+  <li class="nav-item">
+    <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
+  </li>
+</div>
+
+
+
+</body>
+</html>

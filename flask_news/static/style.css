@@ -1,0 +1,95 @@
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+        .navbar .form-inline {
+            display:flexbox;
+            justify-content: flex-start;
+        }
+        .big-heading {
+            text-align: center;
+            font-size: 30px;
+            margin-top: 25px;
+            color:white;
+        }
+        .navbar-logo {
+            width: 60px;
+            height: auto;
+        }
+    
+.navbar {
+      width: 100%;
+      background-color: #555;
+      overflow: auto;
+    }
+    
+   
+    .navbar a {
+      float: left;
+      text-align: center;
+      padding: 7px;
+      color: white;
+      text-decoration: none;
+      font-size: 17px;
+    }
+    
+    
+    .navbar a:hover {
+      background-color: #000;
+    }
+    
+   
+    .active {
+      background-color: #04AA6D;
+    }
+    
+    
+    @media screen and (max-width: 400px) {
+      .navbar a {
+        float: none;
+        display: block;
+      }
+    }
+.head-container {
+  display:flex;
+
+}
+
+
+
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+}
+
+input[type="submit"] {
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+.sec9{
+  margin-left: 30%;
+  align-items: center;
+}

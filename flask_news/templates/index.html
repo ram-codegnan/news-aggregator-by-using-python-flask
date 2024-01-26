@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>News 24 - Free News Website Templates</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Bootstrap Ecommerce Template" name="keywords">
+        <meta content="Bootstrap Ecommerce Template Free Download" name="description">
+
+        
+        <link href="img/favicon.ico" rel="icon">
+        
+
+       
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
+
+        
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="lib/slick/slick.css" rel="stylesheet">
+        <link href="lib/slick/slick-theme.css" rel="stylesheet">
+
+        
+        <link href="{{url_for('static',filename='style.css')}}" rel="stylesheet">
+    </head>
+
+    <head>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        {% block addcss %}{% endblock %}
+        <style>
+            .navbar .form-inline {
+                display:flexbox;
+                justify-content: flex-start;
+            }
+            .big-heading {
+                text-align: center;
+                color: white;
+                text-shadow: 2px 2px 4px #000000;
+                font-size: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+            }
+            .navbar-logo {
+                width: 47px;
+                height: auto;
+            }
+        </style>
+    </head>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <center><b>{{ message }}</b></center>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <body>
+        
+        <nav class="navbar navbar-expand-lg navbar-light bg-info">
+            
+           
+            <div class="container">
+                
+                <a class="navbar-brand" href="#"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUKT66TWIbz3PvBaU5cO8fadgH2S9xClH2q1xbdbYAqJKkz0wZRbS_ZGWeOCgJMYErqpc&usqp=CAU" class="navbar-logo"></a>
+            </div>
+            <div class="container text-center">
+                <h1 class="big-heading">WELCOME TO DAILY NEWS</h1>
+            </div>
+            
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Hello, {{session.get('user')}}</a>
+                            
+                        </li>
+                        
+                    </ul>
+                    <form action="/" method="post">
+                        <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="keyword" placeholder="Enter keyword ...." aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+                        </div>
+                    </form>
+                    
+            
+                </div>
+            </div>
+        </nav>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <div class="navbar">
+            <a class="active" href="{{url_for('newshome')}}"><i class="fa fa-fw fa-home"></i> Home</a>
+            <a href="{{url_for('category',category='general')}}"><i class="fa fa-fw fa-general"></i> General</a>
+            <a href="{{url_for('category',category='business')}}"><i class="fa fa-fw fa-briefcase"></i> Business</a>
+            <a href="{{url_for('category',category='health')}}"><i class="fa fa-fw fa-heartbeat"></i> Health</a>
+            <a href="{{url_for('category',category='entertainment')}}"><i class="fa fa-fw fa-ticket"></i> Entertainment</a>
+            <a href="{{url_for('category',category='sports')}}"><i class="fa fa-fw fa-car"></i> Sports</a>
+            <a href="{{url_for('category',category='technology')}}"><i class="fa fa-fw fa-mobile"></i> Technology</a>
+             
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
+              </li>
+          </div>
+        
+          {% if all_headlines %}
+	 
+         
+          <div class="row row-cols-1 row-cols-md-2 g-4 mx-3 my-3">
+              {% for headline in all_headlines %}
+              <div class="col">
+                  <div class="card h-100">
+                  <img src="{{headline['urlToImage']}}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                      <h3 class="card-title">{{headline['title']}}</h3>
+                      <p class="card-text">{{headline['description']}} <a href="{{headline['url']}}" target="blank">Read More...</a></p>
+      
+      
+                  </div>
+                  <div class="card-footer">
+                      <small class="text-muted">{{headline['source']['name']}}</small>
+                  </div>
+                  </div>
+              </div>
+              {% endfor %}
+          </div>
+          {% endif %}
+          {% if all_articles %}
+          <center><h1>Results for '{{keyword}}'</h1></center>
+          <div class="row row-cols-1 row-cols-md-2 g-4 mx-3 my-3">
+              {% for article in all_articles %}
+              <div class="col">
+                  <div class="card h-100">
+                  <img src="{{article['urlToImage']}}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                      <h3 class="card-title">{{article['title']}}</h3>
+                      <p class="card-text">{{article['description']}} <a href="{{article['url']}}" target="blank">Read More...</a></p>
+      
+      
+                  </div>
+                  <div class="card-footer">
+                      <small class="text-muted">{{article['source']['name']}}</small>
+                  </div>
+                  </div>
+              </div>
+              {% endfor %}
+          </div>
+          {% endif %}
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+        
+        
+
+
+    
+       <div class="head-container">
+        <div class="sec1">
+            <h1><a href="{{url_for('category',category='business')}}"><i class="fa fa-fw fa-briefcase"></i> Business</a></h1>
+            <img src="../static/images/cat-news-8.jpg" height="60%" width="90%"/>
+            <p>At some point of your professional career,you may need to write a formal business letter to send or request information to an 
+                individual,organization, agency or client.While the majority of business communications these days are virtually conducted or done over
+                the phone, business letters remainan important method of professional</p>
+        </div>
+        <div class="sec2">
+            <h2><a href="{{url_for('category',category='health')}}"><i class="fa fa-fw fa-heartbeat"></i> health</a></h2>
+            <img src="../static/images/cat-news-2.jpg" height="60%" width="90%"/>
+            <a class href="">Health</a>
+            <p>Being healthy should be part of your overall lifestyle. 
+                Living a healthy lifestyle can help prevent chronic diseases
+                 and long-term illnesses. Feeling good about yourself and taking 
+                 care of your health are important for your self-esteem and self-image. 
+                 Maintain a healthy lifestyle by doing what is right for your body</p>
+        </div>
+        <div class="sec3">
+            <h3><a href="{{url_for('category',category='entertainment')}}"><i class="fa fa-fw fa-ticket"></i> Entertainment</a></h3>
+            <img src="../static/images/cat-news-10.jpg" height="60%" width="90%"/>
+            <a class href="">Entertainment</a>
+            <p>Entertainment is a form of activity that holds the 
+                attention and interest of an audience or gives 
+                pleasure and delight. It can be an idea or a task, 
+                but it is more likely to be one of the activities or events 
+                that have developed over thousands of years specifically for the
+                 purpose of keeping an audience's attention.</p>
+        </div>
+    </div>
+    <div class="head-container">
+        <div class="sec1">
+            <h1><a href="{{url_for('category',category='technology')}}"><i class="fa fa-fw fa-mobile"></i> Technology</a></h1>
+            <img src="../static/images/cat-news-5.jpg"height="60%" width="90%"/>
+             <p>Technology is the application of knowledge 
+                for achieving practical goals in a reproducible way.[1] 
+                The word technology can also mean the products resulting 
+                from such efforts,including both tangible tools such as 
+                utensils or machines, and intangible ones such as software. 
+                Technology plays a critical role in science, engineering, 
+                and everyday life</p>
+        </div>
+        <div class="sec2">
+            <h2><a href="{{url_for('category',category='sports')}}"><i class="fa fa-fw fa-car"></i> Sports</a></h2>
+            <img src="../static/images/top-news-2.jpg" height="60%" width="90%"/>
+            <a class href="">Sports</a>
+            <p>Sport means all forms of physical activity which, 
+                through casual or organised participation, aim at 
+                expressing or improving physical fitness and mental 
+                wellbeing, forming social relationships or obtaining 
+                results in competition at all levels</p>
+            </div>
+            <div class="sec3">
+                <h3><a href="{{url_for('category',category='education')}}"><i class="fa fa-fw fa-graduation-cap"></i> Education</a></h3>
+                <img src="../static/images/top-news-5.jpg"height="60%" width="90%"/>
+                <a class href="">Education</a>
+                <p>the act or process of imparting or acquiring 
+                    general knowledge, developing the powers of 
+                    reasoning and judgment, and generally of preparing 
+                    oneself or others intellectually for mature life. 
+                    the act or process of imparting or acquiring 
+                    particular knowledge or skills, as for a profession.</p>
+                </div>
+                </div>
+   
+    <div class="head-container">
+        <div class="sec1">
+            <h1><a href="{{url_for('category',category='politics')}}"><i class="fa fa-fw fa-flag"></i> Politics</a></h1>
+            <img src="../static/images/cat-news-4.jpg" height="60%" width="90%"/>
+            <p>Politics'affairs of the cities' is the set
+                of activities that are associated with making 
+                decisions in groups, or other forms of power
+                 relations among individuals, such as the 
+                 distribution of resources or status. The 
+                 branch of social science that studies politics
+               and government is referred to as political science</p>
+        </div>
+        <div class="sec2">
+            <h2><a href="{{url_for('category',category='crime')}}"><i class="fa fa-fw fa-lock"></i> Crime</a></h2>
+            <img src="../static/images/cat-news-7.jpg" height="60%" width="90%"/>
+            <a class href="">Crime</a>
+            <p>crime, the intentional commission of an act
+                usually deemed socially harmful or dangerous 
+                and specifically defined, prohibited,
+                 and punishable under criminal law</p>
+        </div>
+        <div class="sec3">
+            <h3> <a href="weather"><i class="fa fa-fw fa-cloud"></i> Weather</a></h3>
+            <img src="../static/images/cat-news-6.jpg" height="60%" width="90%"/>
+            <a class href="">Weather</a>
+            <p>Weather is the state of the atmosphere, including 
+                temperature, atmospheric pressure, wind, humidity, 
+                precipitation, and cloud cover. It differs from
+                 climate, which is all weather conditions for a
+                  particular location averaged over about 30 years..</p>
+        </div>
+    </div>  
+    
+   
+
+			</div>
+		
+				
+			</div>
+			</div>
+		</div>
+	</div> 
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    
+    
+   
+<div class="head-container">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-widget">
+                            <h3 class="title">Get in Touch</h3>
+                            <div class="contact-info">
+                                <p><i class="fa fa-map-marker"></i>Mogalrajapuram, Vijayawada, India</p>
+                                <p><i class="fa fa-envelope"></i>Codegnan@gmail.com</p>
+                                <p><i class="fa fa-phone"></i>063013 41478</p>
+                                <div class="social">
+                                    <a href="https://twitter.com/codegnandotcom/"><i class="fab fa-twitter"></i></a>
+                                    <a href="https://www.facebook.com/codegnan/"><i class="fab fa-facebook"></i></a>
+                                    <a href="https://in.linkedin.com/company/codegnan"><i class="fab fa-linkedin"></i></a>
+                                    <a href="https://www.instagram.com/codegnan/"><i class="fab fa-instagram"></i></a>
+                                    <a href="https://www.youtube.com/codegnan"><i class="fab fa-youtube"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-widget">
+                            <h3 class="title">Newsletter</h3>
+                            <div class="newsletter">
+                                <p>
+                                    An e-newsletter is an email that is sent to your subscribers regularly to keep them informed about the latest news and updates about your product or brand.you can send them on a weekly or monthly basis.
+                                </p>
+                                <form>
+                                    <input class="form-control" type="email" placeholder="Your email here">
+                                    <button class="btn">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>>
+       
+        
+                
+
+    
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+
+        <JavaScript Libraries ></JavaScript>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/slick/slick.min.js"></script>
+
+
+     
+        <script src="js/main.js"></script>
+    </body>
+</html>
